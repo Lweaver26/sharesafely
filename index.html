@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShareSafely – Secure File Sharing</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230078d4'><path d='M12 2 4 5v6c0 5 3.4 9.7 8 11 4.6-1.3 8-6 8-11V5l-8-3z'/></svg>" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <svg class="brand-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 2 4 5v6c0 5 3.4 9.7 8 11 4.6-1.3 8-6 8-11V5l-8-3z" />
+        <path class="check" d="m8.5 12 2.5 2.5 4.5-5" />
+      </svg>
+      <span>ShareSafely</span>
+    </div>
+    <span id="demo-badge" class="demo-badge" hidden>Demo mode</span>
+  </header>
+
+  <main class="container">
+    <section class="intro">
+      <h1>Share files securely</h1>
+      <p>Upload a file and get a private link that expires automatically.</p>
+    </section>
+
+    <!-- ===== Upload card ===== -->
+    <section id="upload-view" class="card" aria-labelledby="upload-heading">
+      <h2 id="upload-heading" class="visually-hidden">Upload a file</h2>
+
+      <form id="upload-form" novalidate>
+        <label id="drop-zone" class="drop-zone" for="file-input">
+          <input id="file-input" name="file" type="file" class="visually-hidden" />
+          <svg class="drop-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 16V4m0 0-4.5 4.5M12 4l4.5 4.5" />
+            <path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3" />
+          </svg>
+          <span class="drop-title">Drag &amp; drop a file here</span>
+          <span class="drop-sub">or <span class="link-text">browse your computer</span></span>
+          <span id="size-hint" class="drop-hint"></span>
+        </label>
+
+        <div id="file-preview" class="file-preview" hidden>
+          <div class="file-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5z" /><path d="M14 3v5h5" /></svg>
+          </div>
+          <div class="file-meta">
+            <span id="file-name" class="file-name"></span>
+            <span id="file-size" class="file-size"></span>
+          </div>
+          <button type="button" id="remove-file" class="icon-btn" aria-label="Remove file">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+          </button>
+        </div>
+
+        <div class="field">
+          <label for="expiry">Link expires after</label>
+          <select id="expiry" name="expiry"></select>
+        </div>
+
+        <div id="progress" class="progress" hidden>
+          <div class="progress-track"><div id="progress-bar" class="progress-bar"></div></div>
+          <span id="progress-text" class="progress-text">0%</span>
+        </div>
+
+        <div id="error" class="alert alert-error" role="alert" hidden></div>
+
+        <button type="submit" id="upload-btn" class="btn btn-primary" disabled>
+          <span class="btn-label">Upload &amp; generate link</span>
+          <span class="spinner" aria-hidden="true"></span>
+        </button>
+      </form>
+    </section>
+
+    <!-- ===== Result card ===== -->
+    <section id="result-view" class="card result" aria-labelledby="result-heading" hidden>
+      <div class="success-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" /></svg>
+      </div>
+      <h2 id="result-heading">Your link is ready</h2>
+      <p class="muted">Anyone with this link can download <strong id="result-file"></strong> until it expires.</p>
+
+      <div class="link-box">
+        <input id="share-link" type="text" readonly aria-label="Shareable link" />
+        <button type="button" id="copy-btn" class="btn btn-secondary">Copy</button>
+      </div>
+
+      <p class="expiry-info">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>
+        <span>Expires <span id="expiry-abs"></span> (<span id="expiry-countdown"></span>)</span>
+      </p>
+
+      <button type="button" id="new-upload" class="btn btn-ghost">Upload another file</button>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    Files are stored in Azure Blob Storage and removed after their link expires.
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
