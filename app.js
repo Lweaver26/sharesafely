@@ -19,7 +19,7 @@ const CONFIG = {
 
   // Max file size in MB (checked in the browser before uploading; enforce it
   // server-side too). Set to 0 for no limit.
-  maxFileSizeMB: 100,
+  maxFileSizeMB: 0,
 
   // Choices shown in the "Link expires after" dropdown (value in minutes).
   expiryOptions: [
