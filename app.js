@@ -8,7 +8,7 @@
 const CONFIG = {
   // Set to false once your back end is running. While true, uploads are
   // simulated in the browser and a fake link is returned (nothing is sent).
-  mockMode: true,
+  mockMode: false,
 
   // Endpoint that receives the file and returns the time-limited link.
   uploadUrl: "/api/upload",
