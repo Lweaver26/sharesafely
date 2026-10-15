@@ -1,0 +1,21 @@
+{
+  "name": "sharesafely",
+  "version": "1.0.0",
+  "description": "A static HTML/CSS/JS front end with no build step and no dependencies.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lweaver26/sharesafely.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Lweaver26/sharesafely/issues"
+  },
+  "homepage": "https://github.com/Lweaver26/sharesafely#readme"
+}
